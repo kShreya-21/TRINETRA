@@ -22,6 +22,7 @@
   --color-rejected: #a13d2b;
 
   --color-line: #d9cfb8;
+  --color-water: #3d6e8c;
 }
 
 @theme inline {
@@ -38,6 +39,7 @@
   --color-pending: var(--color-pending);
   --color-rejected: var(--color-rejected);
   --color-line: var(--color-line);
+  --color-water: var(--color-water);
 
   --font-display: "Fraunces Variable", "Fraunces", serif;
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;

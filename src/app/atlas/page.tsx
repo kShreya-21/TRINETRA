@@ -6,6 +6,7 @@ import { fetchClaimsForMap } from "@/lib/queries";
 import type { ClaimMapRow, ClaimStatus, StateCode } from "@/lib/types";
 import { AtlasFilters } from "@/components/atlas/atlas-filters";
 import { ClaimDetailPanel } from "@/components/atlas/claim-detail-panel";
+import { AssetLayerToggle } from "@/components/atlas/asset-layer-toggle";
 
 // Leaflet touches `window`, so it can only render on the client.
 const MapView = dynamic(
@@ -27,6 +28,7 @@ export default function AtlasPage() {
   const [selectedClaimId, setSelectedClaimId] = useState<string | null>(
     null
   );
+  const [showAssetLayer, setShowAssetLayer] = useState(false);
 
   useEffect(() => {
     fetchClaimsForMap()
@@ -81,6 +83,12 @@ export default function AtlasPage() {
             total={claims.length}
             visibleCount={filtered.length}
           />
+          <div className="border-t border-line">
+            <AssetLayerToggle
+              active={showAssetLayer}
+              onToggle={() => setShowAssetLayer((s) => !s)}
+            />
+          </div>
         </div>
 
         <div className="relative h-[70vh] min-h-[420px]">
@@ -95,6 +103,7 @@ export default function AtlasPage() {
               claims={filtered}
               selectedClaimId={selectedClaimId}
               onSelect={setSelectedClaimId}
+              showAssetLayer={showAssetLayer}
             />
           )}
         </div>
