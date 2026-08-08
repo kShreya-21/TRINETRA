@@ -52,14 +52,24 @@ export default function ResearchPage() {
           — CRC Press, July 2026. Pages 301–307.
         </p>
         <p className="mt-3 font-mono text-xs text-ink-soft">DOI: {DOI}</p>
-        <Link
-          href={PAPER_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-5 inline-block rounded-full bg-forest px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-paper-raised transition-colors hover:bg-forest-deep"
-        >
-          Read on Taylor & Francis ↗
-        </Link>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link
+            href={PAPER_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block rounded-full bg-forest px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-paper-raised transition-colors hover:bg-forest-deep"
+          >
+            Read on Taylor & Francis ↗
+          </Link>
+          <Link
+            href="/TRINETRA-research-paper.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block rounded-full border border-line px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-ink transition-colors hover:border-forest hover:text-forest"
+          >
+            Download PDF ↓
+          </Link>
+        </div>
       </div>
 
       {/* Abstract, paraphrased */}

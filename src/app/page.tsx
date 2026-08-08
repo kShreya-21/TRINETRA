@@ -37,7 +37,7 @@ export default function Home() {
             <p className="font-mono text-xs uppercase tracking-wider text-clay">
               Team Nyxora — SIH25108
             </p>
-            <h1 className="mt-4 font-display text-5xl leading-[1.05] text-ink md:text-6xl">
+            <h1 className="mt-4 font-display text-4xl leading-[1.08] text-ink sm:text-5xl sm:leading-[1.05] md:text-6xl">
               Nearly 51 lakh forest rights claims. Only 49% became titles.
             </h1>
             <p className="mt-6 max-w-xl text-lg text-ink-soft">

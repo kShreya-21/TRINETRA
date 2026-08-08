@@ -7,8 +7,8 @@ const ROWS = [
 
 export function BenchmarkTable() {
   return (
-    <div className="overflow-hidden rounded-lg border border-line">
-      <table className="w-full border-collapse text-left">
+    <div className="overflow-x-auto rounded-lg border border-line">
+      <table className="w-full min-w-[480px] border-collapse text-left">
         <thead>
           <tr className="border-b border-line bg-paper-raised">
             <th className="px-5 py-3 text-xs font-medium uppercase tracking-wider text-ink-soft">

@@ -70,14 +70,14 @@ export default function DssPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 overflow-hidden rounded-xl border border-line lg:grid-cols-[360px_1fr]">
-          <div className="h-[70vh] min-h-[420px] border-b border-line lg:border-b-0 lg:border-r">
+          <div className="h-[50vh] min-h-[340px] border-b border-line lg:h-[70vh] lg:min-h-[420px] lg:border-b-0 lg:border-r">
             <ClaimantPicker
               claims={claims}
               selectedClaimId={selectedClaimId}
               onSelect={setSelectedClaimId}
             />
           </div>
-          <div className="h-[70vh] min-h-[420px]">
+          <div className="h-[50vh] min-h-[340px] lg:h-[70vh] lg:min-h-[420px]">
             <DssResults claim={selectedClaim} results={results} />
           </div>
         </div>
