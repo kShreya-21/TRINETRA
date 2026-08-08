@@ -1,16 +1,115 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { fetchClaimsForMap } from "@/lib/queries";
+import { computeStats, type StateStats } from "@/lib/stats";
+import type { ClaimMapRow } from "@/lib/types";
+import { Stat } from "@/components/marketing/stat";
+import { RateComparisonChart } from "@/components/dashboard/rate-comparison-chart";
+import { StatusBreakdownChart } from "@/components/dashboard/status-breakdown-chart";
+import { DigitizationProgress } from "@/components/dashboard/digitization-progress";
+
 export default function DashboardPage() {
+  const [claims, setClaims] = useState<ClaimMapRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchClaimsForMap()
+      .then(setClaims)
+      .catch((err) => {
+        console.error(err);
+        setError(
+          "Couldn't load claims. Make sure the database is set up — see supabase/README.md."
+        );
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="mx-auto max-w-6xl px-6 py-24 text-center">
+        <p className="font-mono text-xs uppercase tracking-wider text-ink-soft">
+          Loading dashboard…
+        </p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="mx-auto max-w-6xl px-6 py-24">
+        <div className="rounded-lg border border-rejected/30 bg-rejected/5 p-4 text-sm text-rejected">
+          {error}
+        </div>
+      </div>
+    );
+  }
+
+  const { national, byState } = computeStats(claims);
+
   return (
-    <div className="mx-auto max-w-6xl px-6 py-24">
+    <div className="mx-auto max-w-6xl px-6 py-16">
       <p className="font-mono text-xs uppercase tracking-wider text-clay">
-        Coming up in the build
+        Live from the Atlas dataset
       </p>
-      <h1 className="mt-3 font-display text-4xl text-ink">
-        /dashboard
+      <h1 className="mt-3 font-display text-4xl text-ink md:text-5xl">
+        The numbers, by state
       </h1>
-      <p className="mt-4 max-w-xl text-ink-soft">
-        This module is scaffolded and scheduled on the roadmap. Check back
-        as we build through each day.
+      <p className="mt-4 max-w-2xl text-ink-soft">
+        Every figure here is computed live from the same claim records shown
+        on the Atlas — not a static export.
       </p>
+
+      {/* National headline stats */}
+      <div className="mt-12 grid grid-cols-2 gap-8 border-y border-line py-10 md:grid-cols-4">
+        <Stat value={`${national.total}`} label="Total claims in this demo" />
+        <Stat value={`${national.approvalRate}%`} label="National approval rate" />
+        <Stat value={`${national.conflictRate}%`} label="National conflict rate" />
+        <Stat value={`${national.digitizedPct}%`} label="Records digitized" />
+      </div>
+
+      {/* Rate comparison */}
+      <section className="mt-16">
+        <h2 className="font-display text-2xl text-ink">
+          Approval vs. conflict rate, by state
+        </h2>
+        <p className="mt-2 max-w-xl text-sm text-ink-soft">
+          The same divide seen nationally — Tripura resolves cleanly, while
+          Telangana and Odisha carry a heavier share of disputed claims.
+        </p>
+        <div className="mt-6 rounded-xl border border-line bg-paper-raised p-6">
+          <RateComparisonChart data={byState} />
+        </div>
+      </section>
+
+      {/* Status breakdown */}
+      <section className="mt-16">
+        <h2 className="font-display text-2xl text-ink">
+          Claim status breakdown
+        </h2>
+        <p className="mt-2 max-w-xl text-sm text-ink-soft">
+          Raw counts of approved, pending, and rejected claims per state in
+          this dataset.
+        </p>
+        <div className="mt-6 rounded-xl border border-line bg-paper-raised p-6">
+          <StatusBreakdownChart data={byState} />
+        </div>
+      </section>
+
+      {/* Digitization progress */}
+      <section className="mt-16 pb-8">
+        <h2 className="font-display text-2xl text-ink">
+          Digitization progress
+        </h2>
+        <p className="mt-2 max-w-xl text-sm text-ink-soft">
+          Share of legacy claim records converted into structured digital
+          data — the foundation everything else here depends on.
+        </p>
+        <div className="mt-6 max-w-2xl rounded-xl border border-line bg-paper-raised p-6">
+          <DigitizationProgress data={byState} />
+        </div>
+      </section>
     </div>
   );
 }

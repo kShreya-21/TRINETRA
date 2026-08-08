@@ -83,7 +83,7 @@ export default function AtlasPage() {
           />
         </div>
 
-        <div className="relative h-[70vh] min-h-105">
+        <div className="relative h-[70vh] min-h-[420px]">
           {loading ? (
             <div className="flex h-full items-center justify-center bg-paper-raised">
               <p className="font-mono text-xs uppercase tracking-wider text-ink-soft">
