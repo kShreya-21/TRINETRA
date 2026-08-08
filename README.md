@@ -15,6 +15,13 @@ TRINETRA is a live demonstration (built on our published research) of:
 - **DSS** — a rule engine matching titleholders to eligible government schemes
 - **Asset Detection** — satellite-based land-use classification (demo layer)
 
+## The paper
+Kesarwani, S., Mishra, S., Sahu, T., Suchitra. "TRINETRA — Tribal Rights
+Intelligence Network for Empowerment Through Technology, Research and
+Analysis." In *Sustainable Developments in Computer Engineering, Green
+Technology and Smart Systems*. CRC Press, 2026.
+DOI: [10.1201/9781003743767-47](https://www.taylorfrancis.com/chapters/edit/10.1201/9781003743767-47/trinetra-tribal-rights-intelligence-network-empowerment-technology-research-analysis-shreya-kesarwani-suryansh-mishra-tina-sahu-suchitra)
+
 ## Live link
 _Added once deployed to Vercel — see below._
 

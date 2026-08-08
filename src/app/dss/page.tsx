@@ -45,7 +45,7 @@ export default function DssPage() {
     <div className="mx-auto max-w-7xl px-6 py-10">
       <div className="mb-6">
         <p className="font-mono text-xs uppercase tracking-wider text-clay">
-          Day 5
+          Decision Support
         </p>
         <h1 className="font-display text-3xl text-ink">
           Decision Support System
