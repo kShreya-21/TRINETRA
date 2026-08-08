@@ -1,16 +1,87 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { fetchClaimsForMap, fetchSchemes } from "@/lib/queries";
+import { evaluateSchemes, type SchemeRow } from "@/lib/dss";
+import type { ClaimMapRow } from "@/lib/types";
+import { ClaimantPicker } from "@/components/dss/claimant-picker";
+import { DssResults } from "@/components/dss/dss-results";
+
 export default function DssPage() {
+  const [claims, setClaims] = useState<ClaimMapRow[]>([]);
+  const [schemes, setSchemes] = useState<SchemeRow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedClaimId, setSelectedClaimId] = useState<string | null>(
+    null
+  );
+
+  useEffect(() => {
+    Promise.all([fetchClaimsForMap(), fetchSchemes()])
+      .then(([claimsData, schemesData]) => {
+        setClaims(claimsData);
+        setSchemes(schemesData);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(
+          "Couldn't load data. Make sure the database is set up — see supabase/README.md."
+        );
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const selectedClaim = useMemo(
+    () => claims.find((c) => c.claim_id === selectedClaimId) ?? null,
+    [claims, selectedClaimId]
+  );
+
+  const results = useMemo(() => {
+    if (!selectedClaim || schemes.length === 0) return [];
+    return evaluateSchemes(selectedClaim, schemes);
+  }, [selectedClaim, schemes]);
+
   return (
-    <div className="mx-auto max-w-6xl px-6 py-24">
-      <p className="font-mono text-xs uppercase tracking-wider text-clay">
-        Coming up in the build
-      </p>
-      <h1 className="mt-3 font-display text-4xl text-ink">
-        /dss
-      </h1>
-      <p className="mt-4 max-w-xl text-ink-soft">
-        This module is scaffolded and scheduled on the roadmap. Check back
-        as we build through each day.
-      </p>
+    <div className="mx-auto max-w-7xl px-6 py-10">
+      <div className="mb-6">
+        <p className="font-mono text-xs uppercase tracking-wider text-clay">
+          Day 5
+        </p>
+        <h1 className="font-display text-3xl text-ink">
+          Decision Support System
+        </h1>
+        <p className="mt-2 max-w-2xl text-ink-soft">
+          A deterministic rule engine — no ML, fully explainable — matches
+          every titleholder to the government schemes they qualify for.
+        </p>
+      </div>
+
+      {error && (
+        <div className="mb-4 rounded-lg border border-rejected/30 bg-rejected/5 p-4 text-sm text-rejected">
+          {error}
+        </div>
+      )}
+
+      {loading ? (
+        <div className="flex h-[60vh] items-center justify-center rounded-xl border border-line">
+          <p className="font-mono text-xs uppercase tracking-wider text-ink-soft">
+            Loading claimants…
+          </p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 overflow-hidden rounded-xl border border-line lg:grid-cols-[360px_1fr]">
+          <div className="h-[70vh] min-h-[420px] border-b border-line lg:border-b-0 lg:border-r">
+            <ClaimantPicker
+              claims={claims}
+              selectedClaimId={selectedClaimId}
+              onSelect={setSelectedClaimId}
+            />
+          </div>
+          <div className="h-[70vh] min-h-[420px]">
+            <DssResults claim={selectedClaim} results={results} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

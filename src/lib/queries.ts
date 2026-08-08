@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import type { ClaimMapRow } from "@/lib/types";
+import type { SchemeRow } from "@/lib/dss";
 
 /**
  * Fetches every claim with its joined claimant/state info and parcel
@@ -15,4 +16,14 @@ export async function fetchClaimsForMap(): Promise<ClaimMapRow[]> {
 
   if (error) throw error;
   return (data ?? []) as ClaimMapRow[];
+}
+
+/** Fetches the government scheme reference data used by the DSS. */
+export async function fetchSchemes(): Promise<SchemeRow[]> {
+  const { data, error } = await supabase
+    .from("schemes")
+    .select("code, name, description, eligibility_json");
+
+  if (error) throw error;
+  return (data ?? []) as SchemeRow[];
 }

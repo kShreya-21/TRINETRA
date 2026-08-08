@@ -40,3 +40,10 @@ export const STATUS_LABELS: Record<ClaimStatus, string> = {
   pending: "Pending",
   rejected: "Rejected",
 };
+
+export interface Scheme {
+  code: string;
+  name: string;
+  description: string;
+  eligibility_json: Record<string, unknown>;
+}
