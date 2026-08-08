@@ -1,39 +1,233 @@
 import Link from "next/link";
+import { ClaimsLedgerGrid } from "@/components/marketing/claims-ledger-grid";
+import { Stat } from "@/components/marketing/stat";
+import { StateCard } from "@/components/marketing/state-card";
+import { BenchmarkTable } from "@/components/marketing/benchmark-table";
+
+const PILLARS = [
+  {
+    href: "/atlas",
+    title: "FRA Atlas",
+    body: "Every claim, mapped by status, across all four states — a single source of truth instead of four disconnected paper trails.",
+  },
+  {
+    href: "/digitize",
+    title: "Digitization",
+    body: "OCR and NER turn scanned legacy claim forms into structured, searchable records — with a human reviewing every extraction.",
+  },
+  {
+    href: "/dss",
+    title: "Decision Support",
+    body: "Titleholders matched automatically to PM-KISAN, MGNREGA, JJM, and DAJGUA — schemes they're eligible for but may never hear about.",
+  },
+  {
+    href: "/dashboard",
+    title: "Live Dashboard",
+    body: "Approval rate, conflict rate, and digitization progress, tracked by state — the numbers policymakers currently can't see in one place.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-      <p className="font-mono text-xs uppercase tracking-wider text-clay">
-        Team Nyxora — SIH25108
-      </p>
-      <h1 className="mt-4 max-w-3xl font-display text-5xl leading-[1.05] text-ink md:text-6xl">
-        51 lakh forest rights claims. Scattered across four states, paper
-        files, and no shared map.
-      </h1>
-      <p className="mt-6 max-w-xl text-lg text-ink-soft">
-        TRINETRA is a live system for mapping, digitizing, and resolving
-        Forest Rights Act claims across Madhya Pradesh, Odisha, Telangana,
-        and Tripura — built on the findings of our published research.
-      </p>
-      <div className="mt-8 flex flex-wrap gap-4">
-        <Link
-          href="/atlas"
-          className="rounded-full bg-forest px-6 py-3 font-mono text-xs uppercase tracking-wider text-paper-raised transition-colors hover:bg-forest-deep"
-        >
-          Open the Atlas
-        </Link>
-        <Link
-          href="/research"
-          className="rounded-full border border-line px-6 py-3 font-mono text-xs uppercase tracking-wider text-ink transition-colors hover:border-forest hover:text-forest"
-        >
-          Read the research
-        </Link>
-      </div>
-      <p className="mt-16 max-w-2xl border-l-2 border-clay pl-4 text-sm text-ink-soft">
-        Day 0 scaffold — the full problem framing, live statistics, and
-        interactive map arrive over the next build days. This page updates
-        daily; track progress on GitHub.
-      </p>
+    <div>
+      {/* Hero */}
+      <section className="mx-auto max-w-6xl px-6 pt-16 pb-20 md:pt-24 md:pb-28">
+        <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-8">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-wider text-clay">
+              Team Nyxora — SIH25108
+            </p>
+            <h1 className="mt-4 font-display text-5xl leading-[1.05] text-ink md:text-6xl">
+              Nearly 51 lakh forest rights claims. Only 49% became titles.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg text-ink-soft">
+              Across Madhya Pradesh, Odisha, Telangana, and Tripura, the
+              Forest Rights Act promises land titles to tribal and
+              forest-dwelling communities. In practice, claims sit scattered
+              across paper files, disconnected portals, and inconsistent
+              documentation — with no shared way to see where a claim stands.
+              TRINETRA is our answer, built on our published research.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="/atlas"
+                className="rounded-full bg-forest px-6 py-3 font-mono text-xs uppercase tracking-wider text-paper-raised transition-colors hover:bg-forest-deep"
+              >
+                Open the Atlas
+              </Link>
+              <Link
+                href="/research"
+                className="rounded-full border border-line px-6 py-3 font-mono text-xs uppercase tracking-wider text-ink transition-colors hover:border-forest hover:text-forest"
+              >
+                Read the research
+              </Link>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-line bg-paper-raised p-6">
+            <div className="aspect-square max-w-sm mx-auto">
+              <ClaimsLedgerGrid />
+            </div>
+            <div className="mt-4 flex items-center justify-between border-t border-line pt-4">
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-approved" />
+                <span className="text-xs text-ink-soft">
+                  Recognized as titles
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full border border-ink-soft/40 bg-line" />
+                <span className="text-xs text-ink-soft">
+                  Pending or rejected
+                </span>
+              </div>
+            </div>
+            <p className="mt-3 font-mono text-[11px] uppercase tracking-wider text-ink-soft/70">
+              Each dot = 1% of ~51.23 lakh claims nationally, as of Jun 2025
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* National headline stats */}
+      <section className="border-y border-line bg-paper-raised/60">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-14 md:grid-cols-4">
+          <Stat
+            value="51.23L"
+            label="Claims filed nationally"
+            source="Ministry data, Jun 2025"
+          />
+          <Stat
+            value="49.02%"
+            label="Recognized as land titles"
+            source="Ministry data, Jun 2025"
+          />
+          <Stat value="4" label="States in this study" />
+          <Stat
+            value="47.0%"
+            label="MP digitization baseline"
+            source="627,513 total claims"
+          />
+        </div>
+      </section>
+
+      {/* State-wise disparity */}
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <p className="font-mono text-xs uppercase tracking-wider text-clay">
+          The disparity
+        </p>
+        <h2 className="mt-3 max-w-2xl font-display text-3xl text-ink md:text-4xl">
+          The same law, four very different outcomes
+        </h2>
+        <p className="mt-4 max-w-2xl text-ink-soft">
+          Approval rates vary sharply by state — driven less by eligibility
+          and more by how well documentation, verification, and digital
+          infrastructure hold up at the local level.
+        </p>
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <StateCard
+            name="Madhya Pradesh"
+            context="Largest forest-bearing state — 25% forest cover, 21.1% tribal population."
+            metricLabel="Claims digitized"
+            metricValue="47.0%"
+            tone="pending"
+          />
+          <StateCard
+            name="Odisha"
+            context="Dense sal forests, including Kandhamal — rich ecosystem, slower claim resolution."
+            metricLabel="Approval pace"
+            metricValue="Slow"
+            tone="rejected"
+          />
+          <StateCard
+            name="Telangana"
+            context="Semi-arid deciduous forest paired with e-governance infrastructure like the Dharni portal."
+            metricLabel="Conflict rate"
+            metricValue="28.98%"
+            tone="rejected"
+          />
+          <StateCard
+            name="Tripura"
+            context="60% forest cover, 31% tribal communities — highest approval rate in the study."
+            metricLabel="Approval rate"
+            metricValue="65.1%"
+            tone="approved"
+          />
+        </div>
+      </section>
+
+      {/* Solution pillars */}
+      <section className="border-t border-line bg-paper-raised/60">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <p className="font-mono text-xs uppercase tracking-wider text-clay">
+            The solution
+          </p>
+          <h2 className="mt-3 max-w-2xl font-display text-3xl text-ink md:text-4xl">
+            One system, four working parts
+          </h2>
+          <p className="mt-4 max-w-2xl text-ink-soft">
+            Each module below is live in this demo — not a mockup. Click
+            through to see it working.
+          </p>
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {PILLARS.map((pillar) => (
+              <Link
+                key={pillar.href}
+                href={pillar.href}
+                className="group rounded-lg border border-line bg-paper p-6 transition-colors hover:border-forest"
+              >
+                <h3 className="font-display text-xl text-ink group-hover:text-forest">
+                  {pillar.title}
+                </h3>
+                <p className="mt-2 text-sm text-ink-soft">{pillar.body}</p>
+                <span className="mt-4 inline-block font-mono text-xs uppercase tracking-wider text-clay">
+                  Explore →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benchmark */}
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <p className="font-mono text-xs uppercase tracking-wider text-clay">
+          How this compares
+        </p>
+        <h2 className="mt-3 max-w-2xl font-display text-3xl text-ink md:text-4xl">
+          Measured against an existing system
+        </h2>
+        <p className="mt-4 max-w-2xl text-ink-soft">
+          Chhattisgarh runs the only comparable WebGIS-based FRA system live
+          today. Our published study benchmarks TRINETRA against it directly.
+        </p>
+        <div className="mt-10 max-w-2xl">
+          <BenchmarkTable />
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="border-t border-line bg-forest">
+        <div className="mx-auto max-w-6xl px-6 py-16 text-center">
+          <h2 className="font-display text-3xl text-paper-raised md:text-4xl">
+            See where the claims actually stand.
+          </h2>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/atlas"
+              className="rounded-full bg-clay px-6 py-3 font-mono text-xs uppercase tracking-wider text-paper-raised transition-colors hover:bg-clay-deep"
+            >
+              Open the Atlas
+            </Link>
+            <Link
+              href="/dashboard"
+              className="rounded-full border border-paper-raised/40 px-6 py-3 font-mono text-xs uppercase tracking-wider text-paper-raised transition-colors hover:border-paper-raised"
+            >
+              View the dashboard
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
