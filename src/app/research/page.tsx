@@ -44,10 +44,7 @@ export default function ResearchPage() {
         </h2>
         <p className="mt-3 text-sm text-ink">
           Shreya Kesarwani
-          <span className="text-ink-soft">
-            {" "}
-            — with Suryansh Mishra, Tina Sahu, Suchitra
-          </span>
+          
         </p>
         <p className="mt-3 text-sm text-ink-soft">
           Published in{" "}
