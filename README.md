@@ -23,7 +23,8 @@ Technology and Smart Systems*. CRC Press, 2026.
 DOI: [10.1201/9781003743767-47](https://www.taylorfrancis.com/chapters/edit/10.1201/9781003743767-47/trinetra-tribal-rights-intelligence-network-empowerment-technology-research-analysis-shreya-kesarwani-suryansh-mishra-tina-sahu-suchitra)
 
 ## Live link
-_Added once deployed to Vercel — see below._
+**https://trinetra-one-bice.vercel.app** — verified end-to-end (desktop +
+mobile) as of Day 10.
 
 ## Tech stack
 Next.js 14 (App Router) · Tailwind CSS v4 · Supabase (Postgres + PostGIS) ·

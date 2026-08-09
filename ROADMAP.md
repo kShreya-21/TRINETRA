@@ -2,6 +2,13 @@
 **Tribal Rights Intelligent Network for Empowerment through Technology, Research & Analysis**
 Team Nyxora — SIH25108
 
+> **Build status: Days 0–10 complete.** Live at
+> https://trinetra-one-bice.vercel.app — landing narrative, FRA Atlas,
+> stats dashboard, DSS scheme-matching, OCR/NER digitization, and the
+> asset-detection demo layer are all live against real (synthetic) data.
+> Verified end-to-end on desktop and mobile. See git commit history for
+> the day-by-day build log.
+
 ---
 
 ## 1. What we are actually building
