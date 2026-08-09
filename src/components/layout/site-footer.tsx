@@ -6,9 +6,9 @@ export function SiteFooter() {
           <div>
             <p className="font-display text-base text-ink">TRINETRA</p>
             <p className="mt-1 max-w-md text-sm text-ink-soft">
-              Built by Team Nyxora for SIH25108 — a working demonstration of
-              FRA claim mapping, digitization, and scheme-matching across
-              Madhya Pradesh, Odisha, Telangana, and Tripura.
+              A working demonstration of FRA claim mapping, digitization,
+              and scheme-matching across Madhya Pradesh, Odisha, Telangana,
+              and Tripura, built on the author's published research.
             </p>
           </div>
           <p className="font-mono text-xs uppercase tracking-wider text-ink-soft">

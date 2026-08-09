@@ -1,6 +1,5 @@
 # TRINETRA
 **Tribal Rights Intelligent Network for Empowerment through Technology, Research & Analysis**
-Team Nyxora — SIH25108
 
 ## The problem
 51 lakh+ Forest Rights Act claims across India sit in fragmented, paper-based

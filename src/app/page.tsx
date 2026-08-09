@@ -3,6 +3,7 @@ import { ClaimsLedgerGrid } from "@/components/marketing/claims-ledger-grid";
 import { Stat } from "@/components/marketing/stat";
 import { StateCard } from "@/components/marketing/state-card";
 import { BenchmarkTable } from "@/components/marketing/benchmark-table";
+import { AcronymBreakdown } from "@/components/marketing/acronym-breakdown";
 
 const PILLARS = [
   {
@@ -34,9 +35,6 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-6 pt-16 pb-20 md:pt-24 md:pb-28">
         <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-8">
           <div>
-            <p className="font-mono text-xs uppercase tracking-wider text-clay">
-              Team Nyxora — SIH25108
-            </p>
             <h1 className="mt-4 font-display text-4xl leading-[1.08] text-ink sm:text-5xl sm:leading-[1.05] md:text-6xl">
               Nearly 51 lakh forest rights claims. Only 49% became titles.
             </h1>
@@ -46,7 +44,8 @@ export default function Home() {
               forest-dwelling communities. In practice, claims sit scattered
               across paper files, disconnected portals, and inconsistent
               documentation — with no shared way to see where a claim stands.
-              TRINETRA is our answer, built on our published research.
+              TRINETRA is a direct implementation of the published research
+              behind this project.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
@@ -88,6 +87,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <AcronymBreakdown />
 
       {/* National headline stats */}
       <section className="border-y border-line bg-paper-raised/60">

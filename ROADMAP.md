@@ -1,6 +1,5 @@
 # TRINETRA — Execution Roadmap
 **Tribal Rights Intelligent Network for Empowerment through Technology, Research & Analysis**
-Team Nyxora — SIH25108
 
 > **Build status: Days 0–10 complete.** Live at
 > https://trinetra-one-bice.vercel.app — landing narrative, FRA Atlas,

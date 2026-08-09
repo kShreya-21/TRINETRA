@@ -32,8 +32,8 @@ export default function ResearchPage() {
       </h1>
       <p className="mt-4 text-ink-soft">
         Everything on this site — the statistics, the state comparisons,
-        the benchmark numbers — is drawn directly from our published
-        research, not invented for the demo.
+        the benchmark numbers — is drawn directly from the published
+        research this project is based on, not invented for the demo.
       </p>
 
       {/* Citation card */}
@@ -42,7 +42,13 @@ export default function ResearchPage() {
           TRINETRA — Tribal Rights Intelligence Network for Empowerment
           Through Technology, Research and Analysis
         </h2>
-        <p className="mt-3 text-sm text-ink-soft">{AUTHORS.join(", ")}</p>
+        <p className="mt-3 text-sm text-ink">
+          Shreya Kesarwani
+          <span className="text-ink-soft">
+            {" "}
+            — with Suryansh Mishra, Tina Sahu, Suchitra
+          </span>
+        </p>
         <p className="mt-3 text-sm text-ink-soft">
           Published in{" "}
           <em className="text-ink">
@@ -52,7 +58,7 @@ export default function ResearchPage() {
           — CRC Press, July 2026. Pages 301–307.
         </p>
         <p className="mt-3 font-mono text-xs text-ink-soft">DOI: {DOI}</p>
-        <div className="mt-5 flex flex-wrap gap-3">
+        <div className="mt-5">
           <Link
             href={PAPER_URL}
             target="_blank"
@@ -61,14 +67,10 @@ export default function ResearchPage() {
           >
             Read on Taylor & Francis ↗
           </Link>
-          <Link
-            href="/TRINETRA-research-paper.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block rounded-full border border-line px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-ink transition-colors hover:border-forest hover:text-forest"
-          >
-            Download PDF ↓
-          </Link>
+          <p className="mt-3 text-xs text-ink-soft">
+            Full text is available via Taylor & Francis under their access
+            terms.
+          </p>
         </div>
       </div>
 
@@ -136,14 +138,14 @@ export default function ResearchPage() {
         </div>
       </section>
 
-      {/* Team */}
+      {/* Builder credit */}
       <section className="mt-12 border-t border-line pt-8 pb-8">
         <p className="text-xs uppercase tracking-wider text-ink-soft">
-          Team Nyxora — SIH25108
+          About this build
         </p>
         <p className="mt-3 text-ink-soft">
-          This build is developed by the same team behind the published
-          research, for Smart India Hackathon problem statement SIH25108.
+          This live implementation was independently designed and built by
+          Shreya Kesarwani, based on the published research above.
         </p>
       </section>
     </div>
